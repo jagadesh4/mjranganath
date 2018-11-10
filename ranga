@@ -1,0 +1,183 @@
+package FileOperation;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+
+public class Program {
+	public static void main(String[] args) throws IOException {
+
+		ArrayList<String> DStore = new ArrayList<String>();
+		
+		//try {
+			String file = "D:\\BRD-File Upload\\BRD-File Upload\\Test Cases\\File1.txt";
+			if (file.endsWith(".txt")) {
+				System.out.println("valid extension");
+				BufferedReader reader = new BufferedReader(new FileReader(
+						file));
+				String line;
+				while ((line=reader.readLine())!=null) {
+				
+					String[] parts = line.split("~");
+					System.out.println(parts[4]);
+					validateLength(parts[4]);
+					validateemail(parts[5]);
+					RecordStatus(parts[8]);
+					System.out.println(parts[8]);
+					validDataType(parts[1]);
+					
+					RecordAInactive(parts[9]);
+										
+					
+					
+					
+					
+					
+						
+						
+					
+					}
+					reader.close();
+			}
+		}
+	
+	public static void validateLength(String parts) {
+		System.out.println(parts.length());
+		if(parts.length()<=6)
+		{
+			System.out.println("pin right");
+		}else
+		{
+			System.out.println("pin wrong");
+		}
+		
+				}
+
+public static void validateemail(String parts)
+{
+	String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
+			+ "A-Z]{2,7}$";
+
+	Pattern pat = Pattern.compile(emailRegex);
+	if (parts == null)
+		System.out.println("email not avalible");
+	System.out.println(parts);
+	 System.out.println(pat.matcher(parts).matches());
+	
+}
+public static void RecordStatus(String parts)
+{
+
+		switch(parts)
+		{
+		case "N":
+			System.out.println("new");
+			break;
+		case "D":
+			System.out.println("deleted");
+			break;
+		case "A":
+			System.out.println("Authorized");
+			break;
+		case "M":
+			System.out.println("Modified");
+			break;
+		case "R":
+			System.out.println("Rejected");
+			break;
+			
+		default:
+			System.out.println("InvalidRecordStatus");
+			break;
+		
+		}
+
+		
+	
+}
+public static void validDataType(String parts) {
+	String datatypeRegex = "^[a-zA-Z0-9\\s]+$";
+	Pattern pat = Pattern.compile(datatypeRegex);
+	if(parts==null)
+		System.out.println("incorrect datatype");
+	 System.out.println(parts);
+	 boolean ranga=pat.matcher(parts).matches();
+	 System.out.println(ranga);
+}
+	
+public static void RecordAInactive(String parts)
+{
+
+	switch(parts)
+	{
+	case "A":
+		System.out.println("Active");
+		break;
+	case "I":
+		System.out.println("Inactive");
+		break;
+		default:
+			System.out.println("invalid record flag");
+			break;
+	}
+	
+}
+
+}
+				
+					
+					
+									
+					
+//
+//					if (line == null) {
+//						
+//						break;
+//					}
+//
+//					String[] parts = line.split("~");
+//
+//					for (String part : parts) {
+//						
+//						System.out.println(part);
+//					}
+//					System.out.println();
+//				}
+
+		
+//
+//			else {
+//				System.out.println("invalid extension");
+//			}
+//		} catch (FileNotFoundException e) {
+//			System.out.println("file not found enter valid path");
+//		}
+////		catch(Exception e)
+////		{
+////			System.out.println("Something went wrong");
+////		}
+//
+//	}
+
+//	
+//
+//	public void validatype() {
+//
+//	}
+//
+//	public void validateMandatoryOrNot() {
+//
+//	}
+//
+//	public void validateDomainValueCheck() {
+//
+//	}
+//
+//	public void validateSpecialCharacterValidation() {
+//
+//	}
+//
+//}
